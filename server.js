@@ -41,6 +41,12 @@ function filterByQuery(query, animalsArray) {
     return filteredResults;
 };
 
+// returns animal object based on id
+function findById(id, animalsArray) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
+};
+
 // creates route we can request data from
 app.get('/api/animals', (req, res) => {
     let results = animals;
@@ -49,6 +55,18 @@ app.get('/api/animals', (req, res) => {
         results = filterByQuery(req.query, results);
     }
     res.json(results);
+});
+
+app.get('/api/animals/:id', (req, res) => {
+    const result = findById(req.params.id, animals);
+    // if we get an id result then we show it
+    if (result) {    
+        res.json(result);
+    }
+    // if no id result send error code
+    else {
+        res.send(404);
+    }
 });
 
 // add listen method to express function
