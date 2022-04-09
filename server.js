@@ -14,8 +14,10 @@ const app = express();
 
 // parse incoming string or array data
 app.use(express.urlencoded({extended:true}));
-// parse inocming JSON data
+// parse incoming JSON data
 app.use(express.json());
+// link front end files to webpage
+app.use(express.static('public'));
 
 // create function for queries
 function filterByQuery(query, animalsArray) {
@@ -111,6 +113,11 @@ app.get('/api/animals/:id', (req, res) => {
         res.send(404);
     }
 });
+
+// we link to root directory
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+})
 
 // post method for sending data
 app.post('/api/animals', (req, res) => {
