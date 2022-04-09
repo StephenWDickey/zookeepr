@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/StephenWDickey/zookeepr#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "heroku": "^7.33.3"
   }
 }
