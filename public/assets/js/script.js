@@ -1,6 +1,7 @@
 const { json } = require("express/lib/response");
 
 const $animalForm = document.querySelector('#animal-form');
+const $zookeeperForm = document.querySelector('#zookeeper-form');
 
 const handleAnimalFormSubmit = event => {
   event.preventDefault();
@@ -31,8 +32,8 @@ const handleAnimalFormSubmit = event => {
   fetch('api/animals', {
     method: 'POST',
     headers: {
-      accept: 'application/json',
-      'content-type': 'application/json'
+      Accept: 'application/json',
+      'Content-type': 'application/json'
     },
     body: JSON.stringify(animalObject)
   })
@@ -40,7 +41,7 @@ const handleAnimalFormSubmit = event => {
       if (response.ok) {
         return response.json();
       }
-      alert('Error: ' + response.statusText);
+      alert(`Error: ${response.statusText}`);
     })
     .then(postResponse => {
       console.log(postResponse);

@@ -115,9 +115,20 @@ app.get('/api/animals/:id', (req, res) => {
 });
 
 // we link to root directory
+// we add front-end files
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
-})
+});
+// we are linkin to another html file
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 // post method for sending data
 app.post('/api/animals', (req, res) => {
